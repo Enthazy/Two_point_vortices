@@ -179,11 +179,12 @@ def gen_plot_backward_vec(history):
     y2_history = history[:, 1, 1]
     gen_plot_backward(x1_history, y1_history, x2_history, y2_history)
 
-def show_fig_vec(lambd, w, value):
+def show_fig_vec(lambd, w, value, x_r=3, x_l=-3, y_t=2, y_b=0):
     lambd = str(round(lambd, 2))
     k = str(round(value, 3))
     w = str(round(w, 3))
     name = lambd + "_" + k
     plt.title(r'$\lambda$'+" = " + lambd + ", W = " + w + ", bifur. = " + k, y=-0.13)
-    plt.ylim(0)
+    plt.ylim(float(y_b), float(y_t))
+    plt.xlim(float(x_l), float(x_r))
     plt.show()

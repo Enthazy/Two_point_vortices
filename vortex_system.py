@@ -1,5 +1,5 @@
 from ulti import *
-from ipywidgets import interactive, fixed
+
 
 def grad_euler_method(system):
     x1, y1, s1 = system[0]
@@ -98,21 +98,24 @@ def run_vortex_system(init_system, step=0.0001, epoch=10000, method='euler'):
     return np.array(system_history)
 
 
-def solve_system(x1=-0.5, y1=0.2, x2=0.5, y2=1.2, s1=1, lambd=-1, step=0.0003, epoch=8000, method='euler'):
+def solve_system(x1=-0.5, y1=0.2, x2=0.5, y2=1.2, s1=1, lambd=-1, step=0.0003, epoch=8000, x_r='3',
+                 x_l='-3', y_t='3', y_b='0', method='euler'):
     s2 = lambd * s1
-    init_system = np.array([[x1,y1, s1],[x2,y2,s2]])
-    history_forward = run_vortex_system(init_system,step,epoch,method)
+    init_system = np.array([[x1, y1, s1], [x2, y2, s2]])
+    history_forward = run_vortex_system(init_system, step, epoch, method)
     gen_plot_forward_vec(history_forward)
-    history_backward = run_vortex_system(init_system,-1*step,np.int(epoch/4),method)
+    history_backward = run_vortex_system(init_system, -1 * step, np.int(epoch / 4), method)
     gen_plot_backward_vec(history_backward)
     bifu_value = calculate_expression(init_system)
     w = calculate_w(init_system)
-    show_fig_vec(lambd, w,bifu_value)
-    print("$$\lambda$$ : ", lambd)
+    show_fig_vec(lambd, w, bifu_value, x_r, x_l, y_t, y_b)
+    print("lambda : ", lambd)
     print("Energy : ", calculate_energy_vec(init_system))
     print("P : ", calculate_p(init_system))
     print("W : ", w)
     print("T: ", calculate_t_vec(init_system))
     print("bifurcation value: ", bifu_value)
 
-# solve_system()
+
+if __name__ == "__main__":
+    solve_system()
