@@ -187,4 +187,5 @@ def show_fig_vec(lambd, w, value, x_r=3, x_l=-3, y_t=2, y_b=0):
     plt.title(r'$\lambda$'+" = " + lambd + ", W = " + w + ", bifur. = " + k, y=-0.13)
     plt.ylim(float(y_b), float(y_t))
     plt.xlim(float(x_l), float(x_r))
+    # plt.set_size_inches(18.5, 10.5)
     plt.show()
